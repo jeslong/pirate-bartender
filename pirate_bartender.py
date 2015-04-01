@@ -29,15 +29,21 @@ def order_drink():
   
 def mix_drink(order):
   drink = []
-  for key, value in order.items():
-    if key[value] == True:
-      drink.append("HEllo")
-  print drink
-"""  if order['salty'] == True:
-    drink.append(random.choice(ingredients['salty']))
-  if order['strong'] == True:
-    drink.append(random.choice(ingredients['strong']))
-"""
-o = order_drink()
-print o
-print mix_drink(o)
+  for key in order:
+    if order[key] == True:
+      ingredient = ingredients[key]
+      drink.append(random.choice(ingredient))
+  return drink
+
+def main():
+  ordering = 'y'
+  while ordering == 'y':
+    o = order_drink()
+    cocktail = mix_drink(o)
+    print "Your drink contains:"
+    for ingredient in cocktail:
+      print ingredient
+    ordering = raw_input("Would ye like another drink? Enter y for yes: ").lower()
+if __name__ == '__main__':
+  main()
+  
